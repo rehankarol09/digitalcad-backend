@@ -1,6 +1,7 @@
 import express from "express";
 import { createUser } from "../handlers/user.handler.js";
 import { signuprequest } from "../validators/auth.js";
+import { isRequestValidated } from "../validators/validate.js";
 const router = express.Router();
 const users = [];
 
