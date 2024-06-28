@@ -1,3 +1,4 @@
+import { generatetoken } from "../helper/index.js";
 import user_model from "../models/user.js";
 import bcrypt from "bcrypt";
 
@@ -22,12 +23,13 @@ export const createUser = async(req, res) => {
       enrolled_courses
     }
 
-console.log(user)
-
     const _user = new user_model(user)
-    await _user.save()
+    const response = await _user.save()
+    console.log(response)
 
-    return res.status(200).json({user});
+    const token = generatetoken(response._id, role)
+
+    return res.status(200).json({user, token});
 
   } catch (err) {
     console.log(err);
